@@ -1,3 +1,18 @@
+require 'dotenv'
+Dotenv.load
+require 'simplecov'
+SimpleCov.start
+require 'pry'
+require_relative '../lib/frgnt.rb'
+require 'webmock/rspec'
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
