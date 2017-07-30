@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Frgnt::Client do
-  subject { Frgnt::Client.new }
+describe Frgnt::HTTP::Client do
+  subject { Frgnt::HTTP::Client.new }
 
   it {is_expected.to respond_to(:get) }
   it {is_expected.to respond_to(:response) }

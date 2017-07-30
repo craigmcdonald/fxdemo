@@ -1,4 +1,4 @@
 module Frgnt;end
 require_relative 'frgnt/utils/hash'
-require_relative 'frgnt/client'
-require_relative 'frgnt/response'
+require_relative 'frgnt/http'
+require_relative 'frgnt/store'

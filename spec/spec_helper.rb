@@ -6,7 +6,8 @@ require 'pry'
 require_relative '../lib/frgnt.rb'
 require 'webmock/rspec'
 require 'vcr'
-
+require_relative 'fixtures/redis_config'
+require 'database_cleaner'
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.hook_into :webmock
@@ -97,4 +98,15 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+config.before(:suite) do
+    redis_connection = "redis://#{$redis_ns.client.host}:#{$redis_ns.client.port}/#{$redis_ns.client.db}"
+    namespace = "#{$redis_ns.namespace}:*"
+    DatabaseCleaner[:redis, {connection: redis_connection}].strategy = :truncation, { only: [namespace] }
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
