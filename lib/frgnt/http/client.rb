@@ -24,7 +24,8 @@ module Frgnt
       private
 
       def get_with_error_handling
-        @response_class.new(get)
+        faraday_res = get
+        @response_class.new(faraday_res.body,faraday_res.status)
       rescue => e
         status = case e
         when Faraday::ResourceNotFound then 404

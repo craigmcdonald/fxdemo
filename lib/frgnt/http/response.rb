@@ -57,7 +57,7 @@ module Frgnt
 
       def raise_error(sym)
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][#{@idx}]" + case sym
-        when :data then "must be present."
+        when :data then " must be present."
         when :time then "['time'] must be present and not nil."
         when :date then "['time'] must be a valid date in the format YYYY-MM-DD."
         when :currencies then "['Cube'] must be present and not nil."

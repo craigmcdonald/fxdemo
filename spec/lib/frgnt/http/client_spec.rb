@@ -55,8 +55,8 @@ describe Frgnt::HTTP::Client do
         expect(subject.response.status).to eq(500)
       end
 
-      it 'should return a body of {error: "...Couldn\'t find end of Start Tag.."}' do
-        expect(subject.response.errors[0]).to match(/Couldn't find end of Start Tag/)
+      it 'should return a body of {error: "malformed XML: missing tag start..."}' do
+        expect(subject.response.errors[0]).to match(/malformed XML: missing tag start/)
       end
     end
 

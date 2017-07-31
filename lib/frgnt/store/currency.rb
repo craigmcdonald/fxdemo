@@ -2,9 +2,8 @@ require 'forwardable' unless defined?(Forwardable)
 module Frgnt
   module Store
     class Currency
-
       class << self
-
+        
         def factory(response)
           response.body.each do |os|
             os.currencies.each do |currency|

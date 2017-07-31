@@ -1,16 +1,8 @@
 module Frgnt
   module Store
-    class << self
-      extend Forwardable
-      def_delegator :currencies, :config
-
-      def currencies
-        Currencies
-      end
-    end
-
     class Currencies
       class << self
+        attr_reader :store
 
         def config(&block)
           instance_eval(&block)
