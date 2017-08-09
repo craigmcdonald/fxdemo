@@ -1,20 +1,38 @@
 #!/usr/bin/env ruby
 require "pathname"
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
-  Pathname.new(__FILE__).realpath)
 
-require 'bundler'
-Bundler.require(:default, ENV['RACK_ENV'].to_sym)
+# ENV['RACK_ENV'] is probably not going to present when this is run.  Running
+# in production will require it to be explicitly set.
+ENV['RACK_ENV'] ||= 'development'
 
-Dotenv.load unless ENV['RACK_ENV'] == 'production'
+# Require the library.
+require File.expand_path('../../lib/frgnt',Pathname.new(__FILE__).realpath)
 
-require File.expand_path('../../lib/frgnt.rb',Pathname.new(__FILE__).realpath)
+# Redis config
+dir_path = '../../db/'
+file_name = 'redis.yml'
+file_path = File.expand_path("#{dir_path}#{file_name}",__FILE__)
+REDIS_CONFIG = YAML.load( File.open(file_path)).transform_keys_to_symbols
+default = REDIS_CONFIG[:default]
+config = default.merge(REDIS_CONFIG[ENV['RACK_ENV'].to_sym])
+$redis = Redis.new(config)
+$redis_ns = Redis::Namespace.new(config[:namespace], :redis => $redis) if config[:namespace]
+Redis::Objects.redis = $redis_ns
 
+# Unless we are running in production, use Dotenv for ENV vars.
+unless ENV['RACK_ENV'] == 'production'
+  require 'dotenv'
+  Dotenv.load
+end
+
+# Use the same Redis KEY as the website so that the data ends up in the right place.
 Frgnt::Store.config do
   set_store :redis, ENV['STORE_SECRET']
+  set_base 'EUR'
   logger Logger.new(File.expand_path("../../log/#{ENV['RACK_ENV']}.log",__FILE__))
 end
 
-Frnt::Log.log(2,"Fetching Currency Data...Starting!")
+# Run the fetch, and wrap it in some log messages.
+Frgnt::Log.log(1,"Fetching Currency Data...Starting!")
 Frgnt::Store.fetch
-Frnt::Log.log(2,"Fetching Currency Data...Complete!")
+Frgnt::Log.log(1,"Fetching Currency Data...Complete!")

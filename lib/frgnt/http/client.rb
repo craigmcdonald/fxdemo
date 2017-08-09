@@ -4,7 +4,9 @@ module Frgnt
       extend Forwardable
       def_delegator :@connection, :get
 
-      def initialize(url=ENV['ECB_URL'],response_class=Response)
+      ECB_URL = ENV['ECB_URL'] || 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml'
+
+      def initialize(url=ECB_URL,response_class=Response)
         @response_class = response_class
         @connection = Faraday.new url do |conn|
           conn.response :raise_error

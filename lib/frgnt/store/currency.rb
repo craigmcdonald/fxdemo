@@ -22,8 +22,7 @@ module Frgnt
       end
 
       def rate_at(date,nearest=false,tries=10)
-        #TODO: Error handling
-        date = Date.parse(date.to_s)
+        date = parse_date(date)
         rate = @rates[date]
         if !rate && nearest && tries > 0
           date -= 1
@@ -32,6 +31,13 @@ module Frgnt
         else
           rate
         end
+      end
+
+      private
+      def parse_date(date)
+        Date.parse(date.to_s)
+      rescue ArgumentError
+        raise Frgnt::DateError.new("Argument for date is not a valid date: #{date}.")
       end
     end
   end

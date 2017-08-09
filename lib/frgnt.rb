@@ -9,6 +9,8 @@ require 'faraday'
 require 'faraday_middleware'
 require 'redis-objects'
 require 'multi_xml'
+require 'redis-objects'
+require 'redis-namespace'
 
 module Frgnt;end
 require_relative 'frgnt/log'

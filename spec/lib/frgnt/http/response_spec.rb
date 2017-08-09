@@ -35,7 +35,7 @@ describe Frgnt::HTTP::Response do
 
     describe "date missing" do
       let(:file_name) { 'eurofxref-hist-90d_error_date.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['time'] must be present and not nil."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].date).to eq("")
@@ -44,7 +44,7 @@ describe Frgnt::HTTP::Response do
 
     describe "date invalid" do
       let(:file_name) { 'eurofxref-hist-90d_invalid_date.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['time'] must be a valid date in the format YYYY-MM-DD."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].date).to eq("")
@@ -53,7 +53,7 @@ describe Frgnt::HTTP::Response do
 
     describe "date empty" do
       let(:file_name) { 'eurofxref-hist-90d_empty_date.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['time'] must be present and not nil."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].date).to eq("")
@@ -62,7 +62,7 @@ describe Frgnt::HTTP::Response do
 
     describe "error with currencies" do
       let(:file_name) { 'eurofxref-hist-90d_error_currencies.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['Cube'] must be present and not nil."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].currencies).to eq([])
@@ -71,7 +71,7 @@ describe Frgnt::HTTP::Response do
 
     describe "error with currency name" do
       let(:file_name) { 'eurofxref-hist-90d_error_currency_name.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['Cube'][0]['currency'] must be present and not nil."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].currencies[0].iso_4217).to eq("")
@@ -80,7 +80,7 @@ describe Frgnt::HTTP::Response do
 
     describe "error with currency rate" do
       let(:file_name) { 'eurofxref-hist-90d_error_currency_rate.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][1]['Cube'][0]['rate'] must be present and not nil."
         expect(response.errors[0]).to eq(msg)
         expect(response.body[1].currencies[0].rate).to eq("")
@@ -89,7 +89,7 @@ describe Frgnt::HTTP::Response do
 
     describe "multiple errors" do
       let(:file_name) { 'eurofxref-hist-90d_multiple_errors.xml' }
-      it 'should raise StandardError' do
+      it 'should return an error msg' do
         msgs = [
           "Invalid Data: ['Envelope']['Cube']['Cube'][1]['Cube'][0]['currency'] must be present and not nil.",
           "Invalid Data: ['Envelope']['Cube']['Cube'][2]['Cube'][0]['rate'] must be present and not nil.",

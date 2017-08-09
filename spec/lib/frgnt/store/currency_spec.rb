@@ -21,14 +21,19 @@ describe Frgnt::Store::Currency do
     end
 
     it 'should recurse to the first valid date when #rate_at includes 2nd arg of true' do
-        expect(subject.rate_at('2017-01-02',true)).to eq(1.1654)
+      expect(subject.rate_at('2017-01-02',true)).to eq(1.1654)
     end
 
     it 'should recurse 3 times when a 3rd of arg of 3 is included' do
-        expect(subject.rate_at('2017-01-02',true,3)).to eq(1.1654)
-        expect(subject.rate_at('2017-01-03',true,3)).to eq(1.1654)
-        expect(subject.rate_at('2017-01-04',true,3)).to eq(1.1654)
-        expect(subject.rate_at('2017-01-05',true,3)).to eq(nil)
+      expect(subject.rate_at('2017-01-02',true,3)).to eq(1.1654)
+      expect(subject.rate_at('2017-01-03',true,3)).to eq(1.1654)
+      expect(subject.rate_at('2017-01-04',true,3)).to eq(1.1654)
+      expect(subject.rate_at('2017-01-05',true,3)).to eq(nil)
+    end
+
+    it 'should raise Frgnt::DateError for an invalid date' do
+      msg = "Argument for date is not a valid date: foo."
+      expect { subject.rate_at('foo',true,3) }.to raise_error(Frgnt::DateError,msg)
     end
 
     describe 'adding a second rate with #add_rate' do

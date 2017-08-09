@@ -1,6 +1,5 @@
 require 'redis-objects'
 require 'redis-namespace'
-require_relative 'symbolize_keys'
 
 dir_path = '../'
 file_name = 'redis.yml'
