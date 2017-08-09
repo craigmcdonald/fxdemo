@@ -51,27 +51,28 @@ The demo app uses Sinatra and React (which is not a combination I'd thought of d
 
 ## Prerequisites
 
-1. Ruby 2.4.1 (I personally use [rbenv](https://github.com/rbenv/rbenv) to manage ruby versions)
-2. [Node](https://nodejs.org/en/)
-3. [Yarn](https://yarnpkg.com/lang/en/docs/install/) (or you can use npm)
-4. [Redis](https://redis.io/)
-5. 
+1. Ruby 2.4.1 (I personally use [rbenv](https://github.com/rbenv/rbenv) to manage ruby versions).
+2. [Node](https://nodejs.org/en/).
+3. [Yarn](https://yarnpkg.com/lang/en/docs/install/) (or you can use npm).
+4. [Redis](https://redis.io/).
 
 ## Set-up
 
-1. Clone the repo
-2. In the root of the app, run ```% bundle install```
-3. Then install all JavaScript dependencies: ```% cd client && yarn && cd -``` (if you are using npm  then run ```% cd client && npm install && cd -`)
+1. Clone the repo.
+2. In the root of the app, run ```% bundle install```.
+3. Then install all JavaScript dependencies: ```% cd client && yarn && cd -``` (if you are using npm  then run ```% cd client && npm install && cd -```).
+4. Add a .env file to the app root with `STORE_SECRET=<some-secret-string>`.
 
 ## Running the app in development
 
-1. Start redis (`% redis-server`)
-2. Build the JavaScript client: ```% cd client && npm run build && npm run build-server && cd-```
-3. Launch the app ```% rackup```
-4. Go to ```http://localhost:9292/```
+1. Start redis (`% redis-server`).
+2. Build the JavaScript client: ```% cd client && npm run build && npm run build-server && cd-```.
+3. Launch the app ```% rackup```.
+4. Go to ```http://localhost:9292/```.
 
 ## To-Do
 
-1. Fix the JavaScript tests (right now the snapshots fail because `moment()` needs to be mocked)
-2. Fix Server-Side Rendering (it is undoubtedly just a simple bug, albeit `ExecJS` makes it painful to figure out what it is).
-3. Create a deployment strategy for production (i.e. write a Procfile)
+1. Fix the JavaScript tests (right now the snapshots fail because `moment()` needs to be mocked).
+2. Add client-side form validation.
+3. Fix Server-Side Rendering (it is undoubtedly just a simple bug, albeit `ExecJS` makes it painful to figure out what it is).
+4. Create a deployment strategy for production (i.e. write a Procfile).
