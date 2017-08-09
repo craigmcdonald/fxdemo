@@ -2,7 +2,7 @@
 
 ## Set-up
 
-Call the `config` method on `Frgnt::Store` to set the initial config details:
+Call the `.config` method on `Frgnt::Store` to set the initial config details:
 ```
 Frgnt::Store.config do |secret|
  set_store :redis, secret
@@ -58,7 +58,7 @@ The demo app uses Sinatra and React (which is not a combination I'd thought of d
 
 1. Clone the repo
 2. In the root of the app, run ```% bundle install```
-3. Then install all JavaScript dependencies: ```% cd client && yarn install && cd -``` (if you are using npm  then run `npm install`)
+3. Then install all JavaScript dependencies: ```% cd client && yarn && cd -``` (if you are using npm  then run ```% cd client && npm install && cd -`)
 
 ## Running the app in development
 
