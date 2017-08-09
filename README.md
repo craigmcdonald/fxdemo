@@ -10,7 +10,10 @@ Frgnt::Store.config do |secret|
  logger Logger.new('<path/to/log/file>',5, '9C4000'.hex)
 end
 ```
-There are currently two available stores `:memory` and `:redis`.  The latter requires a secret (or any unique-ish string).
+1. There are currently two available stores `:memory` and `:redis`.  The latter requires a secret (or any unique-ish string).
+2. You need to set a base currency using `set_base`. This defaults to an exchange rate of 1.0.
+3. You can pass in an instance of `Logger` to `logger`. If you don't it will log to `STDOUT`.
+4. If you are using Redis and want to clear your existing store, then call `reset_store` without any args.
 
 ## Fetching updated exchange rates
 
