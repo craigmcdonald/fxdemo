@@ -70,6 +70,12 @@ The demo app uses Sinatra and React (which is not a combination I'd thought of d
 3. Launch the app ```% rackup```.
 4. Go to ```http://localhost:9292/```.
 
+## Fetching ECB data from Terminal (or via some sort of scheduler)
+
+1. Make sure you've satisfied the Prerequisites and completed the Set-up.
+2. in the root of the app run ```./bin/fx_fetch```.
+3. The results of this will be logged to ```log/development.log```
+
 ## To-Do
 
 1. Fix the JavaScript tests (right now the snapshots fail because `moment()` needs to be mocked).
