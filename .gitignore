@@ -1,6 +1,6 @@
 .env
 /coverage
-/log
+/log/*.log*
 notes.txt
 /dist
 client/node_modules
