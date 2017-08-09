@@ -73,7 +73,7 @@ The demo app uses Sinatra and React (which is not a combination I'd thought of d
 ## Fetching ECB data from Terminal (or via some sort of scheduler)
 
 1. Make sure you've satisfied the Prerequisites and completed the Set-up.
-2. in the root of the app run ```./bin/fx_fetch```.
+2. in the root of the app run ```% ./bin/fx_fetch```.
 3. The results of this will be logged to ```log/development.log```
 
 ## To-Do
