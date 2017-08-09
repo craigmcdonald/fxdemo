@@ -1,4 +1,3 @@
-require 'multi_xml' unless defined?(MultiXml)
 module Frgnt
   module Store
     class ISOLookup

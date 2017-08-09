@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Snapshot Test 1`] = `
+<div
+  className="fx-form-outer"
+>
+  <Form
+    defaultValues={
+      Object {
+        "base": "GBP",
+        "counter": "USD",
+        "date": 2017-08-09T12:53:14.878Z,
+      }
+    }
+    loadState={[Function]}
+    onChange={[Function]}
+    onSubmit={[Function]}
+    onValidationFail={[Function]}
+    postSubmit={[Function]}
+    preSubmit={[Function]}
+    preValidate={[Function]}
+    saveState={[Function]}
+    validate={[Function]}
+    willUnmount={[Function]}
+  />
+</div>
+`;

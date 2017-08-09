@@ -1,5 +1,3 @@
-require 'ostruct' unless defined?(OpenStruct)
-require 'date' unless defined?(Date)
 module Frgnt
   module HTTP
     class Response
@@ -27,17 +25,17 @@ module Frgnt
         return @obj['Envelope']['Cube']['Cube'] if @obj['Envelope'] &&
         @obj['Envelope']['Cube'] &&
         @obj['Envelope']['Cube']['Cube']
-        return raise_error(:data) || []
+        return return_error(:data) || []
       end
 
       def fetch_currencies(hash)
-        currencies = hash.fetch!('Cube') { return raise_error(:currencies) }
-        return raise_error(:currencies) unless valid_currencies(currencies)
+        currencies = hash.fetch!('Cube') { return return_error(:currencies) }
+        return return_error(:currencies) unless valid_currencies(currencies)
         currencies.map.with_index do |currency,idx|
           @currency_idx = idx
           OpenStruct.new.tap do |os|
-            os.iso_4217 = currency.fetch!('currency') { raise_error(:iso_4217) || "" }
-            os.rate = currency.fetch!('rate') { raise_error(:rate) || "" }
+            os.iso_4217 = currency.fetch!('currency') { return_error(:iso_4217) || "" }
+            os.rate = currency.fetch!('rate') { return_error(:rate) || "" }
           end
         end
       end
@@ -49,13 +47,13 @@ module Frgnt
       end
 
       def fetch_date(hash)
-        date = hash.fetch!('time') { return raise_error(:time) }
+        date = hash.fetch!('time') { return return_error(:time) }
         Date.parse(date)
       rescue ArgumentError
-        raise_error(:date)
+        return_error(:date)
       end
 
-      def raise_error(sym)
+      def return_error(sym)
         msg = "Invalid Data: ['Envelope']['Cube']['Cube'][#{@idx}]" + case sym
         when :data then " must be present."
         when :time then "['time'] must be present and not nil."
@@ -63,8 +61,6 @@ module Frgnt
         when :currencies then "['Cube'] must be present and not nil."
         when :iso_4217 then "['Cube'][#{@currency_idx}]['currency'] must be present and not nil."
         when :rate then "['Cube'][#{@currency_idx}]['rate'] must be present and not nil."
-        else
-          "Something else went wrong."
         end
         @errors << msg
         @body = []

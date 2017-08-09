@@ -1,2 +1,6 @@
 .env
 /coverage
+/log
+notes.txt
+/dist
+client/node_modules

@@ -55,8 +55,8 @@ describe Frgnt::HTTP::Client do
         expect(subject.response.status).to eq(500)
       end
 
-      it 'should return a body of {error: "malformed XML: missing tag start..."}' do
-        expect(subject.response.errors[0]).to match(/malformed XML: missing tag start/)
+      it 'should return an error message' do
+        expect(subject.response.errors[0]).to match(/.+/)
       end
     end
 

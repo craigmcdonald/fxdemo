@@ -5,13 +5,17 @@ describe Frgnt::Store do
 
   it 'should forward .config to Currencies' do
     expect(Frgnt::Store::Currencies).to receive(:config)
-    subject.config do
-      set_store :memory
-    end
+    subject.config {}
   end
 
-  it 'should forward .fetch_currencies to Fetch' do
+  it 'should forward .fetch to Fetch' do
     expect(Frgnt::Fetch).to receive(:fetch)
     subject.fetch
   end
+
+  it 'should forward .list to Curencies' do
+    expect(Frgnt::Store::Currencies).to receive(:list)
+    subject.list
+  end
+
 end

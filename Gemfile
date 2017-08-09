@@ -1,6 +1,13 @@
 ruby '2.4.1'
 
 source 'https://rubygems.org' do
+  # Front-end
+  gem 'sinatra'
+  gem 'react-sinatra'
+  gem 'haml'
+  gem 'execjs'
+  gem 'mini_racer'
+  gem 'json'
   # HTTP Client lib
   gem 'faraday'
   gem 'faraday_middleware'
@@ -20,6 +27,7 @@ source 'https://rubygems.org' do
   end
 
   group :test do
+    gem 'rack-test', require: 'rack/test'
     gem 'webmock'
     gem 'vcr'
     gem 'database_cleaner'

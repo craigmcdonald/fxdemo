@@ -1,7 +1,3 @@
-require 'faraday'
-require 'faraday_middleware'
-require 'forwardable'
-require 'ostruct' unless defined?(OStruct)
 module Frgnt
   module HTTP
     class Client

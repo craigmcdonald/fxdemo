@@ -1,10 +1,8 @@
 module Frgnt
   class Exchange
-
     class << self
-
-      def at(date,base,counter)
-        @date = date
+      def at(date,base,counter,nearest=false,tries=10)
+        @date, @nearest,@tries = date,nearest,tries
         get_ex(get_rate(base),get_rate(counter))
       end
 
@@ -15,8 +13,7 @@ module Frgnt
       end
 
       def get_rate(str)
-        currency = str == 'EUR' ? 1.0 : Store::Currencies[str]
-        rate = rate_from_currency(currency,str)
+        rate = rate_from_currency(str)
         validate_rate(rate,str)
       end
 
@@ -25,8 +22,9 @@ module Frgnt
         raise ExchangeError.new("Rate missing for #{str} on #{@date.to_s}.")
       end
 
-      def rate_from_currency(currency,str)
-        return currency.rates[@date] if currency
+      def rate_from_currency(str)
+        currency = Store::Currencies.find(str)
+        return currency.rate_at(@date,@nearest,@tries) if currency
         raise ExchangeError.new("Invalid iso_4217: #{str}.")
       end
     end

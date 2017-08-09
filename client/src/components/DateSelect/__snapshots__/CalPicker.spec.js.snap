@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalPicker Snapshot Test 1`] = `
+<div
+  styleName="style.cal-picker"
+>
+  <DatePicker
+    allowSameDay={false}
+    dateFormat="L"
+    dateFormatCalendar="MMMM YYYY"
+    disabled={false}
+    disabledKeyboardNavigation={false}
+    dropdownMode="scroll"
+    maxDate={"2017-08-09T13:58:06.096Z"}
+    minDate={"2017-05-11T13:58:06.095Z"}
+    monthsShown={1}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onClickOutside={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onMonthChange={[Function]}
+    onSelect={[Function]}
+    selected={2017-08-09T12:53:14.878Z}
+    utcOffset={60}
+    withPortal={false}
+  />
+</div>
+`;

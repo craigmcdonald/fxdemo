@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateSelect Snapshot Test 1`] = `
+<div
+  className="fx-form-datepicker-outer"
+>
+  <FormInput
+    field="foo"
+  />
+</div>
+`;
