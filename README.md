@@ -47,7 +47,7 @@ Frgnt::Exchange.at(Date.today,'USD','GBP',true,42)
 ```
 
 # Demo App
-The demo app uses Sinatra and React (which is not a combination I'd thought of doing before, but I'd previously come across a gem that attempted to meld the two and I figured I may was well try it since React and Rails is now all the rage). It has a few rough edges, specifically around Server-Side Rendering, which was the basic motivation for trying this in the first place.  However, the concept is (fairly) sound.
+The demo app uses Sinatra and React (I'd previously come across a gem that attempted to meld the two and I figured I may was well try it since webpack(er)'s new found acceptance in the community means that 'mini-monolith' SSR apps might become a thing rather than just doing a Rails/Sinatra API with a static HTML/CSS/JS client somewhere else). It has a few rough edges, specifically around Server-Side Rendering, which was the basic motivation for trying this in the first place.  However, the concept is (fairly) sound.
 
 ## Prerequisites
 
