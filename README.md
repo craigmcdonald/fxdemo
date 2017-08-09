@@ -30,17 +30,19 @@ Return a sorted list of all available currencies:
 ```
 Frgnt::Store.list
 ```
-Return the exchange rate (as a Float) between a base and counter currency:
+Get the exchange rate (as a `Float`) between a base and counter currency:
 ```
 Frgnt::Exchange.at(Date.today,'USD','GBP')
 ```
-Passing true at the end of the args will force the method to recurse until it finds a valid date (useful for weekends, etc).
-By default it will try 10 previous dates (although this can be overriden by passing in an integer other than 10), e.g.:
+1. The method will either accept a `Date` or a string that parses to a valid date (e.g. '2001-01-01').
+2. The 2nd and 3rd args need to be valid ISO 4217 codes (e.g. 'USD' or 'GBP').
+3. Passing true at the end of the args will force the method to recurse until it finds a valid date (useful for weekends, etc). By default it will try 10 previous dates (although this can be overriden by passing in an integer other than 10), e.g.:
 ```
 Frgnt::Exchange.at(Date.today,'USD','GBP',true,42)
 ```
 
 # Demo App
+The demo app uses Sinatra and React (which is not a combination I'd thought of doing before, but I'd previously come across a gem that attempted to meld the two and I figured I may was well try it since React and Rails is now all the rage). It has a few rough edges, specifically around Server-Side Rendering, which was the basic motivation for trying this in the first place.  However, the concept is (fairly) sound.
 
 ## Prerequisites
 
@@ -59,9 +61,11 @@ Frgnt::Exchange.at(Date.today,'USD','GBP',true,42)
 
 1. Start redis (`redis-server`)
 2. Build the JavaScript client: ```cd client && npm run build && npm run build-server && cd-```
-3. The launch the app ```rackup```
+3. Launch the app ```rackup```
+4. Go to ```http://localhost:9292/```
 
 ## To-Do
 
-1. Fix the JavaScript tests (right now the snapshots fail because moment() needs to be mocked)
-2. Create a deployment strategy for production (i.e. write a Procfile)
+1. Fix the JavaScript tests (right now the snapshots fail because `moment()` needs to be mocked)
+2. Fix Server-Side Rendering (it is undoubtedly just a simple bug, albeit `ExecJS` makes it painful to figure out what it is).
+3. Create a deployment strategy for production (i.e. write a Procfile)
