@@ -54,14 +54,14 @@ The demo app uses Sinatra and React (which is not a combination I'd thought of d
 ## Set-up
 
 1. Clone the repo
-2. In the root of the app, run ```bundle install```
-3. Then install all JavaScript dependencies: ```cd client && yarn install && cd -``` (if you are using npm  then run `npm install`)
+2. In the root of the app, run ```% bundle install```
+3. Then install all JavaScript dependencies: ```% cd client && yarn install && cd -``` (if you are using npm  then run `npm install`)
 
 ## Running the app in development
 
-1. Start redis (`redis-server`)
-2. Build the JavaScript client: ```cd client && npm run build && npm run build-server && cd-```
-3. Launch the app ```rackup```
+1. Start redis (`% redis-server`)
+2. Build the JavaScript client: ```% cd client && npm run build && npm run build-server && cd-```
+3. Launch the app ```% rackup```
 4. Go to ```http://localhost:9292/```
 
 ## To-Do
